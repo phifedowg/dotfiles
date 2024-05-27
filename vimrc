@@ -1,49 +1,57 @@
+" Vim settings
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
+" Set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
+" Let Vundle manage itself
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-" Plugin for linting YAML
-Plugin 'dense-analysis/ale'
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+" Add your plugins here
+Plugin 'tpope/vim-fugitive'   " Git wrapper
+Plugin 'dense-analysis/ale'   " Linting and fixing
+Plugin 'scrooloose/nerdtree'  " File system explorer
+
+" All plugins must be added before the following line
+call vundle#end()
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
+
+" Global settings
+set number                    " Show line numbers
+set relativenumber             " Show relative line numbers
+set wrap                      " Wrap long lines
+set showcmd                   " Show (partial) command in status line
+set wildmenu                  " Enhanced command line completion
+set lazyredraw                " Redraw only when necessary
+set tabstop=4                 " Number of spaces that a <Tab> in the file counts for
+set shiftwidth=4              " Number of spaces to use for each step of (auto)indent
+set expandtab                 " Use spaces instead of tabs
+set smartindent               " Do smart autoindenting when starting a new line
+set autoindent                " Copy indent from current line when starting a new line
+set smartcase                 " Do smart case matching when searching
+set ignorecase                " Do case insensitive matching when searching
+set hlsearch                  " Highlight search results
+set incsearch                 " Incremental search
+set showmatch                 " Show matching brackets
+
+" Auto commands
+autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 et ai  " YAML indent settings
+
+" NERDTree configuration
+autocmd vimenter * NERDTree   " Open NERDTree when Vim starts
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Key mappings
+nnoremap <C-n> :NERDTreeToggle<CR>  " Map Ctrl+n to toggle NERDTree
+
+" Colorscheme (optional, uncomment to use)
+" colorscheme desert
+
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-set number
-autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 et ai
-"set colorcolumn=80
-"set cursorcolumn"
-setlocal ts=2 sts=2 sw=2 et ai
+" See :h vundle for more details or wiki for FAQ
