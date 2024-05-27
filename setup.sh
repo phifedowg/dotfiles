@@ -46,7 +46,6 @@ LINKS=(
     "$DOTFILES_DIR/bashrc $HOME/.bashrc"
     "$DOTFILES_DIR/config/starship.toml $HOME/.config/starship.toml"
     "$DOTFILES_DIR/tmux.conf $HOME/.tmux.conf"
-    "$DOTFILES_DIR/kube/config $HOME/.kube/config"
 )
 
 for LINK in "${LINKS[@]}"; do
