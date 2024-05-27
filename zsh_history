@@ -41391,3 +41391,12 @@ ping 10.10.2.26\
 : 1716846411:0;vim .config/starship.toml
 : 1716846530:0;mkdir dotfiles
 : 1716846588:0;cp .zsh_aliases .zsh_history .zshrc .vimrc .gitconfig .bashrc dotfiles
+: 1716850776:0;..
+: 1716850778:0;la
+: 1716850799:0;unlink .zshrc_history
+: 1716850803:0;zshrc
+: 1716850831:0;omz_history -E | less
+: 1716850835:0;l
+: 1716850839:0;ga . ; gc -m "fixed zsh_history"
+: 1716850843:0;cd git/dotfiles
+: 1716850845:0;ga . ; gc -m "fixed zsh_history"
