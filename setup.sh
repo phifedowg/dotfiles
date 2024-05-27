@@ -6,7 +6,7 @@ YELLOW='\033[0;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-DOTFILES_DIR="$HOME/dotfiles"
+DOTFILES_DIR="$HOME/git/dotfiles"
 REPO_URL="git@github.com:p3rception/dotfiles.git"
 
 # Clone the repository if it doesn't exist
@@ -41,11 +41,12 @@ echo -e "${YELLOW}Creating symbolic links...${NC}"
 
 LINKS=(
     "$DOTFILES_DIR/zshrc $HOME/.zshrc"
-    "$DOTFILES_DIR/zshrc_aliases $HOME/.zsh_aliases"
-    "$DOTFILES_DIR/zshrc_history $HOME/.zsh_history"
+    "$DOTFILES_DIR/zsh_aliases $HOME/.zsh_aliases"
+    "$DOTFILES_DIR/zsh_history $HOME/.zsh_history"
     "$DOTFILES_DIR/bashrc $HOME/.bashrc"
     "$DOTFILES_DIR/config/starship.toml $HOME/.config/starship.toml"
     "$DOTFILES_DIR/tmux.conf $HOME/.tmux.conf"
+    "$DOTFILES_DIR/vimrc $HOME/.vimrc"
 )
 
 for LINK in "${LINKS[@]}"; do

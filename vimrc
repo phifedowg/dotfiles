@@ -1,57 +1,60 @@
-" Vim settings
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" Enable improved Vi compatibility
+set nocompatible
 
-" Set the runtime path to include Vundle and initialize
+" Disable automatic file type detection (required before setting up Vundle)
+filetype off
+
+" Set the runtime path to include Vundle and initialize it
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" Let Vundle manage itself
+" List of plugins managed by Vundle
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'file:///home/gmarik/path/to/plugin'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'dense-analysis/ale'
+Plugin 'preservim/nerdtree'
+Plugin 'itchyny/lightline.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-surround'
+Plugin 'kien/ctrlp.vim'
+Plugin 'junegunn/fzf.vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'terryma/vim-multiple-cursors'
 
-" Add your plugins here
-Plugin 'tpope/vim-fugitive'   " Git wrapper
-Plugin 'dense-analysis/ale'   " Linting and fixing
-Plugin 'scrooloose/nerdtree'  " File system explorer
-
-" All plugins must be added before the following line
+" End Vundle setup
 call vundle#end()
-filetype plugin indent on    " required
 
-" Global settings
-set number                    " Show line numbers
-set relativenumber             " Show relative line numbers
-set wrap                      " Wrap long lines
-set showcmd                   " Show (partial) command in status line
-set wildmenu                  " Enhanced command line completion
-set lazyredraw                " Redraw only when necessary
-set tabstop=4                 " Number of spaces that a <Tab> in the file counts for
-set shiftwidth=4              " Number of spaces to use for each step of (auto)indent
-set expandtab                 " Use spaces instead of tabs
-set smartindent               " Do smart autoindenting when starting a new line
-set autoindent                " Copy indent from current line when starting a new line
-set smartcase                 " Do smart case matching when searching
-set ignorecase                " Do case insensitive matching when searching
-set hlsearch                  " Highlight search results
-set incsearch                 " Incremental search
-set showmatch                 " Show matching brackets
+" Enable file type detection and plugins
+filetype plugin indent on
 
-" Auto commands
-autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 et ai  " YAML indent settings
+" Enable syntax highlighting
+syntax on
 
-" NERDTree configuration
-autocmd vimenter * NERDTree   " Open NERDTree when Vim starts
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" General Settings
+set number
+set hlsearch
+set incsearch
+set showmatch
+set undofile
+set clipboard=unnamedplus
+set autoindent
+set smartindent
+set ignorecase
+set smartcase
+set laststatus=2
 
-" Key mappings
-nnoremap <C-n> :NERDTreeToggle<CR>  " Map Ctrl+n to toggle NERDTree
+" YAML-specific settings
+autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 et ai
 
-" Colorscheme (optional, uncomment to use)
-" colorscheme desert
+" General settings for indentation
+setlocal ts=2 sts=2 sw=2 et ai
 
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-" See :h vundle for more details or wiki for FAQ
+" Enable color column at 80 characters and cursor column
+set cursorcolumn
+
+" Disable mouse support
+set mouse=

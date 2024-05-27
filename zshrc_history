@@ -1,18 +1,1 @@
-: 1716849014:0;ga . ; gc -m "fixed zsh_aliases and zsh_history symlinks"
-: 1716849016:0;gp
-: 1716849018:0;ls
-: 1716849027:0;cd dotfiles
-: 1716849033:0;ll
-: 1716849040:0;rm kube
-: 1716849042:0;rm -rf kube
-: 1716849044:0;vim setup.sh
-: 1716849081:0;ga . ; gc -m "removed kube configs"
-: 1716849082:0;gp
-: 1716849089:0;./setup.sh
-: 1716849193:0;sudo su
-: 1716849197:0;c
-: 1716849199:0;clear
-: 1716849200:0;tf
-: 1716849205:0;dps
-: 1716849206:0;dh
-: 1716849211:0;ducks
+: 1716850754:0;ga . ; gc -m "fixed zsh_history"
