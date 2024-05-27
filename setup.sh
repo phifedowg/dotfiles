@@ -40,13 +40,13 @@ done
 echo -e "${YELLOW}Creating symbolic links...${NC}"
 
 LINKS=(
-    "$DOTFILES_DIR/zshrc $HOME/.zshrc"
-    "$DOTFILES_DIR/zsh_aliases $HOME/.zsh_aliases"
-    "$DOTFILES_DIR/zsh_history $HOME/.zsh_history"
-    "$DOTFILES_DIR/bashrc $HOME/.bashrc"
+    "$DOTFILES_DIR/config/zshrc $HOME/.zshrc"
+    "$DOTFILES_DIR/config/zsh_aliases $HOME/.zsh_aliases"
+    "$DOTFILES_DIR/config/zsh_history $HOME/.zsh_history"
+    "$DOTFILES_DIR/config/bashrc $HOME/.bashrc"
     "$DOTFILES_DIR/config/starship.toml $HOME/.config/starship.toml"
-    "$DOTFILES_DIR/tmux.conf $HOME/.tmux.conf"
-    "$DOTFILES_DIR/vimrc $HOME/.vimrc"
+    "$DOTFILES_DIR/config/tmux.conf $HOME/.tmux.conf"
+    "$DOTFILES_DIR/config/vimrc $HOME/.vimrc"
 )
 
 for LINK in "${LINKS[@]}"; do
