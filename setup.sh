@@ -41,8 +41,8 @@ echo -e "${YELLOW}Creating symbolic links...${NC}"
 
 LINKS=(
     "$DOTFILES_DIR/zshrc $HOME/.zshrc"
-    "$DOTFILES_DIR/zshrc_aliases $HOME/.zshrc_aliases"
-    "$DOTFILES_DIR/zshrc_history $HOME/.zshrc_history"
+    "$DOTFILES_DIR/zshrc_aliases $HOME/.zsh_aliases"
+    "$DOTFILES_DIR/zshrc_history $HOME/.zsh_history"
     "$DOTFILES_DIR/bashrc $HOME/.bashrc"
     "$DOTFILES_DIR/config/starship.toml $HOME/.config/starship.toml"
     "$DOTFILES_DIR/tmux.conf $HOME/.tmux.conf"
