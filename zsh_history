@@ -1,7 +1,0 @@
-: 1716851425:0;cd config
-: 1716851426:0;ls
-: 1716851440:0;..
-: 1716851441:0;vim setup.sh
-: 1716851491:0;ga . ; gc -m "moved all to folder config"
-: 1716851492:0;gp
-: 1716851496:0;./setup.sh

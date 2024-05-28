@@ -71,3 +71,31 @@ export PATH=/usr/local/bin:$PATH
 export HCLOUD_TOKEN=$(cat "$HOME/.hcloud_token") # Use a secure file for the token
 export EDITOR=/usr/bin/vim
 export BROWSER=/usr/bin/chromium
+
+# Custom functions
+mkcd() { mkdir -p "$1" && cd "$1"; }
+extract() { tar -xf "$1" && cd "${1%.*}"; }
+
+# Load autojump if available
+if [[ -f /usr/share/autojump/autojump.zsh ]]; then
+    source /usr/share/autojump/autojump.zsh
+fi
+
+# Fuzzy history search with Ctrl-R
+bindkey '^R' history-incremental-pattern-search-backward
+
+# Start GPG and SSH agents if they are not running
+if ! pgrep -u "$USER" gpg-agent > /dev/null; then
+    eval "$(gpg-agent --daemon)"
+fi
+
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    eval "$(ssh-agent -s)"
+fi
+
+# Environment-specific settings
+#if [[ $HOST == "work-machine" ]]; then
+#    export PATH=$PATH:/work-specific/path
+#else
+#    export PATH=$PATH:/personal-specific/path
+#fi
