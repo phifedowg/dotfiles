@@ -1,20 +1,27 @@
+# Initialize Starship prompt
 eval "$(starship init zsh)"
-source /home/phife/.antigen/antigen.zsh
-antigen use oh-my-zsh
-antigen bundle git
-antigen bundle heroku
-antigen bundle pip
-antigen bundle lein
-antigen bundle command-not-found
-antigen bundle systemd
-antigen bundle docker
-antigen bundle bundler
-antigen bundle colorize
-antigen bundle encode64#
-antigen bundle github
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen apply
+
+# Load antigen if available
+if [[ -f "$HOME/.antigen/antigen.zsh" ]]; then
+    source "$HOME/.antigen/antigen.zsh"
+    antigen use oh-my-zsh
+    antigen bundle git
+    antigen bundle heroku
+    antigen bundle pip
+    antigen bundle lein
+    antigen bundle command-not-found
+    antigen bundle systemd
+    antigen bundle docker
+    antigen bundle bundler
+    antigen bundle colorize
+    antigen bundle encode64
+    antigen bundle github
+    antigen bundle zsh-users/zsh-syntax-highlighting
+    antigen bundle zsh-users/zsh-autosuggestions
+    antigen apply
+fi
+
+# Custom history management function
 function omz_history {
   zparseopts -E c=clear l=list
   if [[ -n "$clear" ]]; then
@@ -26,6 +33,8 @@ function omz_history {
     builtin fc "$@" -l 1
   fi
 }
+
+# Aliases for history with date format stamps
 case $HIST_STAMPS in
   "mm/dd/yyyy") alias history='omz_history -f' ;;
   "dd.mm.yyyy") alias history='omz_history -E' ;;
@@ -33,25 +42,32 @@ case $HIST_STAMPS in
   "") alias history='omz_history' ;;
   *) alias history="omz_history -t '$HIST_STAMPS'" ;;
 esac
-[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
-HISTSIZE=5000000
-SAVEHIST=1000000
-setopt extended_history       # record timestamp of command in HISTFILE
-setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt hist_ignore_dups       # ignore duplicated commands history list
-setopt hist_ignore_space      # ignore commands that start with space
-setopt hist_verify            # show command with history expansion to user before running it
-setopt inc_append_history     # add commands to HISTFILE in order of execution
-setopt share_history          # share command history data
-plugins=(git)
-fpath+=(~/.config/hcloud/completion/zsh)
+
+# History settings
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000
+SAVEHIST=10000
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history
+
+# Plugins and completions
+plugins=(git docker terraform zsh-syntax-highlighting zsh-autosuggestions)
+fpath+=("$HOME/.config/hcloud/completion/zsh")
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
+
+# Load additional configurations if available
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-# custom sources, exports and envs vars
-source /home/phife/.zsh_aliases
-export ZSH=/home/phife/.antigen/bundles/robbyrussell/oh-my-zsh
+source "$HOME/.zsh_aliases"
+
+# Export environment variables (move these to .zshenv for better practice)
+export ZSH="$HOME/.antigen/bundles/robbyrussell/oh-my-zsh"
 export PATH=/usr/local/bin:$PATH
-export HCLOUD_TOKEN=IPiR5mcjyDTDbrrj5ONnk0Rm6NZtdVoCCkqjGNA0wk8UFnsAcuXRAtNXENvb516e
-EDITOR=/usr/bin/vim
-BROWSER=/usr/bin/chromium
+export HCLOUD_TOKEN=$(cat "$HOME/.hcloud_token") # Use a secure file for the token
+export EDITOR=/usr/bin/vim
+export BROWSER=/usr/bin/chromium
