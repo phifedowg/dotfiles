@@ -41407,3 +41407,32 @@ ping 10.10.2.26\
 : 1716851491:0;ga . ; gc -m "moved all to folder config"
 : 1716853319:0;la
 : 1716853320:0;lsa 
+: 1716900831:0;pacman -S eza
+: 1716900834:0;sudo pacman -S eza
+: 1716900838:0;ls
+: 1716900912:0;sudo pacman -Ss nerdfont
+: 1716901125:0;scp bastion.dosc.io:/home/dev/.local/share/fonts/* ../../.local/share/fonts
+: 1716901134:0;mkdir ../../.local/share/fonts
+: 1716901135:0;scp bastion.dosc.io:/home/dev/.local/share/fonts/* ../../.local/share/fonts
+: 1716901143:0;scp bastion:/home/dev/.local/share/fonts/* ../../.local/share/fonts
+: 1716901207:0;rsync -avz bastion:/home/dev/.local/share/fonts ../../.local/share/fonts
+: 1716901214:0;sudo pacman -S rsync
+: 1716901224:0;rsync -avz bastion:/home/dev/.local/share/fonts/ ../../.local/share/fonts/
+: 1716901239:0;rsync -avz bastion:/home/dev/.local/share/fonts ../../.local/share/fonts
+: 1716901246:0;ssh bastion
+: 1716901587:0;ssh 10.13.37.100
+: 1716901590:0;ssh 10.13.37.101
+: 1716912729:0;ssh 10.13.37.102
+: 1716912758:0;ssh 10.13.37.101
+: 1716913538:0;vim .ssh/known_hosts
+: 1716913555:0;vim ~/.ssh/known_hosts
+: 1716913577:0;ssh 10.13.37.101
+: 1716913581:0;ssh 10.13.37.102
+: 1716913596:0;ssh phife@10.13.37.102
+: 1716913600:0;ssh phife@10.13.37.101
+: 1716913602:0;ssh phife@10.13.37.100
+: 1716913639:0;ssh phife@10.13.37.102
+: 1716913656:0;ssh phife@10.13.37.101
+: 1716913658:0;ssh phife@10.13.37.100
+: 1716913661:0;ssh phife@10.13.37.101
+: 1716913665:0;ssh phife@10.13.37.100

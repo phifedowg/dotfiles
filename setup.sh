@@ -59,5 +59,5 @@ for LINK in "${LINKS[@]}"; do
         echo -e "${RED}Failed to create symlink: $DEST${NC}"
     fi
 done
-
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 echo -e "${GREEN}Dotfiles setup complete!${NC}"

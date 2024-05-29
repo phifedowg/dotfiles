@@ -99,3 +99,6 @@ fi
 #else
 #    export PATH=$PATH:/personal-specific/path
 #fi
+# Initialize Keychain and add specific SSH keys
+eval $(keychain --eval --agents ssh ssh-mg-precipoint.key ssh-phife.key)
+
