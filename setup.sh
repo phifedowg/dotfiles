@@ -44,7 +44,6 @@ LINKS=(
     "$DOTFILES_DIR/config/zsh_aliases $HOME/.zsh_aliases"
     "$DOTFILES_DIR/config/zsh_history $HOME/.zsh_history"
     "$DOTFILES_DIR/config/bashrc $HOME/.bashrc"
-    "$DOTFILES_DIR/config/starship.toml $HOME/.config/starship.toml"
     "$DOTFILES_DIR/config/tmux.conf $HOME/.tmux.conf"
     "$DOTFILES_DIR/config/vimrc $HOME/.vimrc"
 )
