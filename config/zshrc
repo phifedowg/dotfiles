@@ -1,6 +1,3 @@
-# Initialize Starship prompt
-eval "$(starship init zsh)"
-
 # Load antigen if available
 if [[ -f "$HOME/.antigen/antigen.zsh" ]]; then
     source "$HOME/.antigen/antigen.zsh"
@@ -18,6 +15,7 @@ if [[ -f "$HOME/.antigen/antigen.zsh" ]]; then
     antigen bundle github
     antigen bundle zsh-users/zsh-syntax-highlighting
     antigen bundle zsh-users/zsh-autosuggestions
+    antigen theme steeef
     antigen apply
 fi
 
