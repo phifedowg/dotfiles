@@ -87,14 +87,7 @@ fi
 # Fuzzy history search with Ctrl-R
 bindkey '^R' history-incremental-pattern-search-backward
 
-# Start GPG and SSH agents if they are not running
-if ! pgrep -u "$USER" gpg-agent > /dev/null; then
-    eval "$(gpg-agent --daemon)"
-fi
 
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    eval "$(ssh-agent -s)"
-fi
 
 # Environment-specific settings
 #if [[ $HOST == "work-machine" ]]; then
@@ -103,5 +96,5 @@ fi
 #    export PATH=$PATH:/personal-specific/path
 #fi
 # Initialize Keychain and add specific SSH keys
-eval $(keychain --eval --agents ssh ssh-mg-precipoint.key ssh-phife.key)
+#eval $(keychain --eval --agents ssh ssh-mg-precipoint.key ssh-phife.key)
 
