@@ -3,6 +3,7 @@ if [[ -f "$HOME/.antigen/antigen.zsh" ]]; then
     source "$HOME/.antigen/antigen.zsh"
     antigen use oh-my-zsh
     antigen bundle git
+    antigen bundle git-prompt
     antigen bundle heroku
     antigen bundle pip
     antigen bundle lein
@@ -10,6 +11,10 @@ if [[ -f "$HOME/.antigen/antigen.zsh" ]]; then
     antigen bundle systemd
     antigen bundle docker
     antigen bundle bundler
+    antigen bundle tmux
+    antigen bundle vi-mode
+    antigen bundle cp
+    antigen bundle ssh-agent
     antigen bundle colorize
     antigen bundle encode64
     antigen bundle github
