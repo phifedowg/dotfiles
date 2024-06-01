@@ -54,8 +54,13 @@ complete -o nospace -C /usr/bin/terraform terraform
 
 # Load additional configurations if available
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-eval $(keychain --eval --agents ssh $(for key in ~/.ssh/*.key; do echo $key; done))
-#eval $(keychain --eval --agents ssh ssh-mg-precipoint.key ssh-phife.key)
+# Check for keychain
+if command -v keychain >/dev/null 2>&1; then
+    eval $(keychain --eval --agents ssh $(for key in ~/.ssh/*; do echo $key; done))
+else
+    echo "keychain not installed, sfalling back to default ssh-agent"
+fi
+
 # Custom history management function
 function omz_history {
   zparseopts -E c=clear l=list
