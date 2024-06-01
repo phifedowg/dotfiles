@@ -20,6 +20,7 @@ if [[ -f "$HOME/.antigen/antigen.zsh" ]]; then
     antigen bundle github
     antigen bundle zsh-users/zsh-syntax-highlighting
     antigen bundle zsh-users/zsh-autosuggestions
+    antigen bundle autojump
     antigen theme steeef
     antigen apply
 fi
@@ -87,14 +88,5 @@ fi
 # Fuzzy history search with Ctrl-R
 bindkey '^R' history-incremental-pattern-search-backward
 
-
-
-# Environment-specific settings
-#if [[ $HOST == "work-machine" ]]; then
-#    export PATH=$PATH:/work-specific/path
-#else
-#    export PATH=$PATH:/personal-specific/path
-#fi
-# Initialize Keychain and add specific SSH keys
 #eval $(keychain --eval --agents ssh ssh-mg-precipoint.key ssh-phife.key)
 

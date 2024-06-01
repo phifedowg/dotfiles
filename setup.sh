@@ -1,15 +1,11 @@
 #!/bin/bash
-
-# Define colors for output
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
-
 DOTFILES_DIR="$HOME/git/dotfiles"
 REPO_URL="git@github.com:p3rception/dotfiles.git"
-
-# Clone the repository if it doesn't exist
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 if [ ! -d "$DOTFILES_DIR" ]; then
     echo -e "${YELLOW}Cloning dotfiles repository...${NC}"
     git clone $REPO_URL $DOTFILES_DIR
@@ -27,18 +23,13 @@ else
         exit 1
     fi
 fi
-
-# List all dotfiles in the repository except README.md
 echo -e "${YELLOW}Listing all dotfiles in the repository (excluding README.md):${NC}"
-for file in $(ls -1 $DOTFILES_DIR); do
+for file in $(ls -1 $DOTFILES_DIR/config); do
     if [ "$file" != "README.md" ]; then
         echo $file
     fi
 done
-
-# Create symbolic links
 echo -e "${YELLOW}Creating symbolic links...${NC}"
-
 LINKS=(
     "$DOTFILES_DIR/config/zshrc $HOME/.zshrc"
     "$DOTFILES_DIR/config/zsh_aliases $HOME/.zsh_aliases"
@@ -47,7 +38,6 @@ LINKS=(
     "$DOTFILES_DIR/config/tmux.conf $HOME/.tmux.conf"
     "$DOTFILES_DIR/config/vimrc $HOME/.vimrc"
 )
-
 for LINK in "${LINKS[@]}"; do
     SRC=$(echo $LINK | awk '{print $1}')
     DEST=$(echo $LINK | awk '{print $2}')
@@ -58,5 +48,4 @@ for LINK in "${LINKS[@]}"; do
         echo -e "${RED}Failed to create symlink: $DEST${NC}"
     fi
 done
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 echo -e "${GREEN}Dotfiles setup complete!${NC}"
