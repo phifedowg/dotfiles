@@ -1,4 +1,13 @@
-# aliases
+alias hist='omz_history -E | less'
+# Aliases for history with date format stamps
+case $HIST_STAMPS in
+  "mm/dd/yyyy") alias history='omz_history -f' ;;
+  "dd.mm.yyyy") alias history='omz_history -E' ;;
+  "yyyy-mm-dd") alias history='omz_history -i' ;;
+  "") alias history='omz_history' ;;
+  *) alias history="omz_history -t '$HIST_STAMPS'" ;;
+esac
+
 alias vimrc='vim ~/.vimrc'
 alias zshrc='vim ~/.zshrc'
 alias aliases='vim ~/.zsh_aliases'
@@ -18,9 +27,6 @@ alias k='kubectl'
 # terraform
 alias tf='terraform'
 
-# formated zsh history
-alias hist='omz_history -E | less'
-
 # show large files in current directory
 alias ducks='du -cksh * | sort -rn | head'
 
@@ -38,12 +44,13 @@ alias hashmestronger='dd if=/dev/urandom bs=1 count=64 2>/dev/null | base64 -w 0
 alias myip='echo "Local ips:" && ifconfig | grep "inet " | awk '\''{printf "\t%s\n", $2}'\'' && echo "External ip:" && curl -s ipinfo.io/ip | awk '\''{printf "\t%s\n", $0}'\'';'
 alias snmap='nmap -f -T2 --data-length 8 --randomize-hosts -ttl 58'
 alias dnslookup="dig +noall +answer"
+
 # Git
 alias ga='git add'
 alias gs='git status'
 alias gc='git commit'
 
-# 
+# Directories
 alias ls='eza --group-directories-first --icons'
 alias ll='eza --group-directories-first --icons -lh'
 alias la='eza --group-directories-first --icons -a'
