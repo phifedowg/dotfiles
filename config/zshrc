@@ -1,4 +1,4 @@
-# Load antigen if available
+# Source
 if [[ -f "$HOME/.antigen/antigen.zsh" ]]; then
     source "$HOME/.antigen/antigen.zsh"
     antigen use oh-my-zsh
@@ -20,32 +20,11 @@ if [[ -f "$HOME/.antigen/antigen.zsh" ]]; then
     antigen bundle github
     antigen bundle zsh-users/zsh-syntax-highlighting
     antigen bundle zsh-users/zsh-autosuggestions
-    antigen bundle autojump
+#    antigen bundle autojump
     antigen theme steeef
     antigen apply
 fi
-
-# Custom history management function
-function omz_history {
-  zparseopts -E c=clear l=list
-  if [[ -n "$clear" ]]; then
-    echo -n >| "$HISTFILE"
-    echo >&2 History file deleted. Reload the session to see its effects.
-  elif [[ -n "$list" ]]; then
-    builtin fc "$@"
-  else
-    builtin fc "$@" -l 1
-  fi
-}
-
-# Aliases for history with date format stamps
-case $HIST_STAMPS in
-  "mm/dd/yyyy") alias history='omz_history -f' ;;
-  "dd.mm.yyyy") alias history='omz_history -E' ;;
-  "yyyy-mm-dd") alias history='omz_history -i' ;;
-  "") alias history='omz_history' ;;
-  *) alias history="omz_history -t '$HIST_STAMPS'" ;;
-esac
+source "$HOME/.zsh_aliases"
 
 # History settings
 HISTFILE="$HOME/.zsh_history"
@@ -59,6 +38,15 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history
 
+# Aliases for history with date format stamps
+case $HIST_STAMPS in
+  "mm/dd/yyyy") alias history='omz_history -f' ;;
+  "dd.mm.yyyy") alias history='omz_history -E' ;;
+  "yyyy-mm-dd") alias history='omz_history -i' ;;
+  "") alias history='omz_history' ;;
+  *) alias history="omz_history -t '$HIST_STAMPS'" ;;
+esac
+
 # Plugins and completions
 plugins=(git docker terraform zsh-syntax-highlighting zsh-autosuggestions)
 fpath+=("$HOME/.config/hcloud/completion/zsh")
@@ -67,8 +55,27 @@ complete -o nospace -C /usr/bin/terraform terraform
 
 # Load additional configurations if available
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-source "$HOME/.zsh_aliases"
+# Load autojump if available
+if [[ -f /usr/share/autojump/autojump.zsh ]]; then
+    source /usr/share/autojump/autojump.zsh
+fi
 
+# Custom functions
+mkcd() { mkdir -p "$1" && cd "$1"; }
+extract() { tar -xf "$1" && cd "${1%.*}"; }
+eval $(keychain --eval --agents ssh $(for key in ~/.ssh/*.key; do echo $key; done))
+# Custom history management function
+function omz_history {
+  zparseopts -E c=clear l=list
+  if [[ -n "$clear" ]]; then
+    echo -n >| "$HISTFILE"
+    echo >&2 History file deleted. Reload the session to see its effects.
+  elif [[ -n "$list" ]]; then
+    builtin fc "$@"
+  else
+    builtin fc "$@" -l 1
+  fi
+}
 # Export environment variables (move these to .zshenv for better practice)
 export ZSH="$HOME/.antigen/bundles/robbyrussell/oh-my-zsh"
 export PATH=/usr/local/bin:$PATH
@@ -76,17 +83,8 @@ export HCLOUD_TOKEN=$(cat "$HOME/.hcloud_token") # Use a secure file for the tok
 export EDITOR=/usr/bin/vim
 export BROWSER=/usr/bin/chromium
 
-# Custom functions
-mkcd() { mkdir -p "$1" && cd "$1"; }
-extract() { tar -xf "$1" && cd "${1%.*}"; }
 
-# Load autojump if available
-if [[ -f /usr/share/autojump/autojump.zsh ]]; then
-    source /usr/share/autojump/autojump.zsh
-fi
 
+# Keybindings
 # Fuzzy history search with Ctrl-R
 bindkey '^R' history-incremental-pattern-search-backward
-
-#eval $(keychain --eval --agents ssh ssh-mg-precipoint.key ssh-phife.key)
-
