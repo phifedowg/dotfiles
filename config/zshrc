@@ -9,18 +9,17 @@ if [[ -f "$HOME/.antigen/antigen.zsh" ]]; then
     antigen bundle lein
     antigen bundle command-not-found
     antigen bundle systemd
-    antigen bundle docker
     antigen bundle bundler
     antigen bundle tmux
     antigen bundle vi-mode
     antigen bundle cp
-    antigen bundle ssh-agent
     antigen bundle colorize
     antigen bundle encode64
-    antigen bundle github
+    antigen bundle zsh-users/zsh-completions
+    antigen bundle zsh-users/zsh-history-substring-search
+    antigen bundle zsh-users/zsh-docker
     antigen bundle zsh-users/zsh-syntax-highlighting
     antigen bundle zsh-users/zsh-autosuggestions
-#    antigen bundle autojump
     antigen theme steeef
     antigen apply
 fi
@@ -55,15 +54,8 @@ complete -o nospace -C /usr/bin/terraform terraform
 
 # Load additional configurations if available
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
-# Load autojump if available
-if [[ -f /usr/share/autojump/autojump.zsh ]]; then
-    source /usr/share/autojump/autojump.zsh
-fi
-
-# Custom functions
-mkcd() { mkdir -p "$1" && cd "$1"; }
-extract() { tar -xf "$1" && cd "${1%.*}"; }
 eval $(keychain --eval --agents ssh $(for key in ~/.ssh/*.key; do echo $key; done))
+#eval $(keychain --eval --agents ssh ssh-mg-precipoint.key ssh-phife.key)
 # Custom history management function
 function omz_history {
   zparseopts -E c=clear l=list
@@ -82,8 +74,6 @@ export PATH=/usr/local/bin:$PATH
 export HCLOUD_TOKEN=$(cat "$HOME/.hcloud_token") # Use a secure file for the token
 export EDITOR=/usr/bin/vim
 export BROWSER=/usr/bin/chromium
-
-
 
 # Keybindings
 # Fuzzy history search with Ctrl-R
