@@ -3,7 +3,6 @@ if [[ -f "$HOME/.antigen/antigen.zsh" ]]; then
     source "$HOME/.antigen/antigen.zsh"
     antigen use oh-my-zsh
     antigen bundle git
-    antigen bundle git-prompt
     antigen bundle heroku
     antigen bundle pip
     antigen bundle lein
@@ -56,9 +55,9 @@ complete -o nospace -C /usr/bin/terraform terraform
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 # Check for keychain
 if command -v keychain >/dev/null 2>&1; then
-    eval $(keychain --eval --agents ssh $(for key in ~/.ssh/*; do echo $key; done))
+    eval $(keychain --ignore-missing --quiet --eval --agents ssh ~/.ssh/ssh-phife.key ~/.ssh/ssh-mg-precipoint.key)
 else
-    echo "keychain not installed, sfalling back to default ssh-agent"
+    echo "keychain not installed, falling back to default ssh-agent"
 fi
 
 # Custom history management function
@@ -82,4 +81,4 @@ export BROWSER=/usr/bin/chromium
 
 # Keybindings
 # Fuzzy history search with Ctrl-R
-bindkey '^R' history-incremental-pattern-search-backward
+#bindkey '^R' history-incremental-pattern-search-backward
